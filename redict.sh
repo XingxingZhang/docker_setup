@@ -6,8 +6,8 @@
 
 new_data_root=${1:-'/mnt/docker'}
 # make sure your new_data_root exists
-# sudo mkdir /mnt/docker
-# sudo chmod 777 /mnt/docker/ -R
+sudo mkdir /mnt/docker
+sudo chmod 777 /mnt/docker/ -R
 
 echo ${new_data_root}
 
@@ -17,16 +17,16 @@ sudo systemctl stop docker
 
 # uncomment and run (better stepwise)
 # move your docker data to the new location
-# sudo rsync -axPS /var/lib/docker/ ${new_data_root}
+sudo rsync -axPS /var/lib/docker/ ${new_data_root}
 
 # uncomment and run (better stepwise)
-# cp /etc/docker/daemon.json daemon.bak.json
-# sudo python3 add_data_root.py /etc/docker/daemon.json ${new_data_root}
+cp /etc/docker/daemon.json daemon.bak.json
+sudo python3 add_data_root.py /etc/docker/daemon.json ${new_data_root}
 echo "this is the new docker daemon"
 cat /etc/docker/daemon.json
 
 # uncomment and run (better stepwise)
-# sudo mv /var/lib/docker /var/lib/docker.bak
+sudo mv /var/lib/docker /var/lib/docker.bak
 
 sudo systemctl start docker
 
